@@ -12,8 +12,8 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-10 flex items-center justify-around border-b border-brand-grey bg-brand-cream px-5 py-3.75">
       <a href="#top">
         <div className="flex items-center gap-1.25">
-          <Image src="/images/logo.png" alt="Logotipo do SnapNote" width={50} height={50} className="max-h-15" />
-          <p className="text-xl font-extrabold text-brand-primary">Snap<span className="text-brand-yellow">Note</span></p>
+          <Image src="/images/logo-snap-note.png" alt="Logotipo do SnapNote" width={50} height={50} className="max-h-15" />
+          <p className="text-xl font-extrabold text-brand-primary">Snap<span className="text-brand-blue">Note</span></p>
         </div>
       </a>
       <nav>

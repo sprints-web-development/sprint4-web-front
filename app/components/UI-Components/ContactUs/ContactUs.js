@@ -1,12 +1,20 @@
+import { useEffect, useRef } from "react"
 import Mensagem from "../../Mensagem/mensagem"
 
 export default function ContactUs({ handleChange, handleSubmit, lastMessage, status, form}) {
+    
+    const nameRef = useRef()
+
+    useEffect(() => {
+        nameRef.current.focus()
+    }, [status])
+
     return (
         <form className="flex w-full flex-col gap-6.25 rounded-[15px] border border-[#444] bg-[#171b21] p-7.5" id="formContact" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-6.25 max-[650px]:grid-cols-1">
                 <div className="flex flex-col">
                     <label className="font-mansrope text-[10px] text-brand-snow" htmlFor="nome">SEU NOME</label>
-                    <input className="font-mansrope w-full border-b border-[#555] bg-transparent py-3 text-brand-snow outline-none focus:border-brand-lime" onChange={handleChange} value={form.nome} required type="text" id="nome" name="nome" placeholder="Como podemos chamar você?" />
+                    <input ref={nameRef} className="font-mansrope w-full border-b border-[#555] bg-transparent py-3 text-brand-snow outline-none focus:border-brand-lime" onChange={handleChange} value={form.nome} required type="text" id="nome" name="nome" placeholder="Como podemos chamar você?" />
                 </div>
                 <div className="flex flex-col">
                     <label className="font-mansrope text-[10px] text-brand-snow" htmlFor="email">SEU E-MAIL</label>

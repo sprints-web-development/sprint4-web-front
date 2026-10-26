@@ -5,7 +5,7 @@ export default function Footer() {
         <footer className="grid w-full items-center gap-7.5 border-t border-brand-primary bg-brand-cream px-7.5 py-10 grid-cols-[2fr_.7fr_.7fr_1.4fr] max-[850px]:grid-cols-[2fr_1fr_1fr] max-[550px]:grid-cols-1 max-[550px]:gap-5">
             <div className="flex flex-col items-start gap-2">
                 <a href="#top" className="flex items-center gap-2.5">
-                    <Image src="/images/logo.png" alt="Logotipo do SnapNote" width={50} height={50} className="h-7.5 w-7.5 object-contain" />
+                    <Image src="/images/logo-snap-note.png" alt="Logotipo do SnapNote" width={50} height={50} className="h-7.5 w-7.5 object-contain" />
                     <span className="text-[18px] font-bold text-brand-primary">Snap<span className="text-brand-blue">Note</span></span>
                 </a>
                 <p className="text-[11px] text-brand-grey">Fotografe. Organize. Reencontre.</p>

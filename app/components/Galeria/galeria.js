@@ -6,17 +6,17 @@ export default function Galeria() {
 
     const cards = [
         {
-            src: "/images/galery/desktop.png",
+            src: "/images/prints/desktop.png",
             title: "Biblioteca Visual",
             description: "Interface pensada para ser funcional, rápida e sem distrações."
         },
         {
-            src: "/images/galery/cellPhone.png",
+            src: "/images/prints/cellPhone.png",
             title: "Lembretes Úteis",
             description: "O conteúdo certo, na hora certa."
         },
         {
-            src: "/images/galery/half.png",
+            src: "/images/prints/half.png",
             title: "Captura Guiada",
             description: "Um bom registro desde o primeiro clique."
         }

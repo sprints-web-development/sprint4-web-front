@@ -5,7 +5,7 @@ export default function MobileMenu({ menuOpen }) {
         <div className={`absolute top-0 h-[110dvh] w-1/2 bg-brand-primary px-1.25 py-5 transition-[.5s] ease-in ${menuOpen ? 'left-0' : '-left-1/2'}`}>
             <div className="mb-5 flex items-center justify-center">
                 <a href="#top">
-                    <Image src="/images/logo-white.png" alt="Logotipo do SnapNote" width={50} height={50} className="max-h-20" />
+                    <Image src="/images/logo-snap-white.png" alt="Logotipo do SnapNote" width={50} height={50} className="max-h-20" />
                 </a>
             </div>
             <ul className="flex list-none flex-col items-center gap-7.5">
