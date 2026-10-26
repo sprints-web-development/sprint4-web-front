@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-cream: #f4f1e9;
+  --color-brand-snow: #f9fafb;
+  --color-brand-pure: #ffffff;
+  --color-brand-primary: #12151b;
+  --color-brand-yellow: #facc15;
+  --color-brand-blue: #1657b8;
+  --color-brand-grey: #5e525b;
+  --color-brand-medium-grey: rgb(73 73 73);
+  --color-brand-medium-black: #20232a;
+  --color-brand-orange: #ffaf03;
+  --color-brand-light-grey: #ccc;
+  --color-brand-lime: #c9f24b;
+  --color-brand-ciano: #b9dcf1;
+
+  --font-mansrope: "Mansrope", sans-serif;
+  --font-merienda: "Merienda", sans-serif;
+  --font-playfair: "Playfair", serif;
+
+  --animate-fade-in-success: fadeInSuccess 0.4s ease;
+}
+
+@font-face {
+  font-family: Mansrope;
+  src: url(../public/fonts/Manrope-Regular.ttf);
+}
+
+@font-face {
+  font-family: Merienda;
+  src: url(../public/fonts/Merienda-Light.ttf);
+}
+
+@font-face {
+  font-family: Playfair;
+  font-style: italic;
+  src: url(../public/fonts/PlayfairDisplay-Italic.ttf);
+}
+
+@keyframes fadeInSuccess {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, li, span, button {
+    font-family: var(--font-mansrope);
+    color: var(--color-brand-primary);
+  }
+
+  p {
+    line-height: 1.8;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
