@@ -1,7 +1,8 @@
 'use client'
 import { useEffect, useState } from "react";
-import SectionTag from "../SectionTag/sectionTag";
 import ContactUs from "../UI-Components/ContactUs/ContactUs";
+import api from "@/app/api/api";
+import Testimonial from "../Testimonials/testimonials";
 
 export default function Contato() {
 
@@ -9,8 +10,21 @@ export default function Contato() {
     const [messages, setMessages] = useState([])
     const [status, setStatus] = useState(false)
     const [lastMessage, setLastMessage] = useState({ nome: "", protocolo: 0 })
+    const [users, setUsers] = useState([])
+    const [errors, setErrors] = useState({ isError: false, textError: "" })
+
+    const getUsers = async () => {
+        try {
+            const response = await api.get('/users')
+            setUsers(response.data)
+        } catch (error) {
+            console.error("Erro: ", error)
+            setErrors({ isError: true, textError: error.toString() })
+        }
+    }
 
     useEffect(() => {
+        getUsers()
         const messages = JSON.parse(localStorage.getItem('mensagens')) || []
         setMessages(messages)
     }, [])
@@ -48,16 +62,9 @@ export default function Contato() {
     }
 
     return (
-        <section id="contact" className="grid w-full items-center gap-17.5 bg-brand-primary px-20 py-20 grid-cols-[1fr_1.4fr] max-[1250px]:px-7.5 max-[991px]:grid-cols-1 max-[850px]:px-7.5 max-[500px]:px-5">
-            <div>
-                <SectionTag name="Contato" color="white" />
-                <h2 className="text-[clamp(42px,5vw,65px)] font-medium leading-[1.05] text-brand-snow">Vamos transformar<br />registros em<br /><span className="font-playfair text-brand-lime">memórias?</span></h2>
-                <p className="mt-7.5 mb-5 text-brand-light-grey">Quer conhecer melhor o projeto ou compartilhar uma ideia? Fale com a nossa
-                    equipe.</p>
-                <a className="text-brand-lime border-b border-brand-lime" href="mailto:equipe@snapnote.com">equipe@snapnote.com ↗</a>
-            </div>
-
-            <ContactUs handleChange={handleChange} handleSubmit={handleSubmit} lastMessage={lastMessage} status={status} form={form}/>
+        <section id="contact" className="grid w-full items-center gap-17.5 bg-brand-primary px-20 py-20 grid-cols-[1fr_1fr] max-[991px]:grid-cols-1 max-[850px]:px-7.5 max-[500px]:px-5">
+            <Testimonial users={users} errors={errors}/>
+            <ContactUs handleChange={handleChange} handleSubmit={handleSubmit} lastMessage={lastMessage} status={status} form={form} />
         </section>
     );
 }
