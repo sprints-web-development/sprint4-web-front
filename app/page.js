@@ -26,12 +26,16 @@ export default function LandingPage() {
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+  
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
       <Header openModal={handleOpenModal} />
       {isModalOpen ?
-        <ModalAutenticacao isOpenModal={isModalOpen} /> :
+        <ModalAutenticacao isOpenModal={isModalOpen} closeModal={handleCloseModal} /> :
         <>
           <Top />
           <Problem />

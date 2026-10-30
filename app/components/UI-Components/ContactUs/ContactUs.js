@@ -6,7 +6,9 @@ export default function ContactUs({ handleChange, handleSubmit, lastMessage, sta
     const nameRef = useRef()
 
     useEffect(() => {
-        nameRef.current.focus()
+        if (status) {
+            nameRef.current?.focus()
+        }
     }, [status])
 
     return (
