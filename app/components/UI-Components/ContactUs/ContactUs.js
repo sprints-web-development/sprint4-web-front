@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react"
 import Mensagem from "../../Mensagem/mensagem"
-import SectionTag from "../../SectionTag/sectionTag"
 
 export default function ContactUs({ handleChange, handleSubmit, lastMessage, status, form }) {
 

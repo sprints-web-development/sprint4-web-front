@@ -1,3 +1,4 @@
+"use client"
 import Caracteristicas from "./components/Caracteristicas/caracteristicas";
 import Contato from "./components/Contato/contato";
 import Footer from "./components/Footer/footer";
@@ -8,6 +9,8 @@ import Publico from "./components/Publics/publics";
 import Solution from "./components/UI-Components/Solution/solution";
 import Time from "./components/Time/Time";
 import Top from "./components/Top/top";
+import ModalAutenticacao from "./components/Modal/modal";
+import { useState } from "react";
 
 export default function LandingPage() {
 
@@ -18,18 +21,28 @@ export default function LandingPage() {
     { nome: "João Lucas Magordo", rm: "RM572419", path: "/images/group/joaoL.jpeg" },
     { nome: "Gabriel Cardoso", rm: "RM571846", path: "/images/group/gabrielC.jpeg" },
   ]
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <>
-      <Header />
-      <Top />
-      <Problem />
-      <Solution />
-      <Publico />
-      <Galeria />
-      <Caracteristicas />
-      <Time time={team} />
-      <Contato />
+      <Header openModal={handleOpenModal} />
+      {isModalOpen ?
+        <ModalAutenticacao isOpenModal={isModalOpen} /> :
+        <>
+          <Top />
+          <Problem />
+          <Solution />
+          <Publico />
+          <Galeria />
+          <Caracteristicas />
+          <Time time={team} />
+          <Contato />
+        </>
+      }
       <Footer />
     </>
   );

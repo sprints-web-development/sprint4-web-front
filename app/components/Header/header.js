@@ -4,7 +4,7 @@ import { useState } from "react";
 import MobileMenu from "../UI-Components/MobileMenu/MobileMenu";
 import MobileButton from "../UI-Components/MobileMenu/MobileButton";
 
-export default function Header() {
+export default function Header({openModal}) {
 
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -23,6 +23,7 @@ export default function Header() {
           <li><a href="/#galeria" className="cursor-pointer text-sm font-bold">Galeria</a></li>
           <li><a href="/#equipe" className="cursor-pointer text-sm font-bold">Nossa Equipe</a></li>
           <li><a href="/experimente" className="cursor-pointer text-sm font-bold">Experimente</a></li>
+          <li onClick={() => openModal()}><a className="cursor-pointer text-sm font-bold">Ver Mensagens (Equipe)</a></li>
           <li><a href="/#contact" className="cursor-pointer rounded-[30px] border-2 border-brand-yellow bg-brand-yellow px-3.75 py-3.75 text-sm font-bold text-brand-snow transition-[.3s] ease-in-out hover:bg-brand-cream hover:text-brand-yellow">Contato</a></li>
         </ul>
       </nav>

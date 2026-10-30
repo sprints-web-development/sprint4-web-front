@@ -22,11 +22,20 @@ export default function Contato() {
             setErrors({ isError: true, textError: error.toString() })
         }
     }
+    
+    const getMessages = async () => {
+        try {
+            const response = await api.get('/messages')
+            setMessages(response.data)
+        } catch (error) {
+            console.error("Erro: ", error)
+            setErrors({ isError: true, textError: error.toString() })
+        }
+    }
 
     useEffect(() => {
         getUsers()
-        const messages = JSON.parse(localStorage.getItem('mensagens')) || []
-        setMessages(messages)
+        getMessages()
     }, [])
 
     const handleChange = (e) => {
@@ -43,18 +52,22 @@ export default function Contato() {
         }
     }
 
-    useEffect(() => {
-        localStorage.setItem('mensagens', JSON.stringify(messages))
-    }, [messages])
-
+    const saveMessage = async(message) => {
+        const response = await api.post('/messages', message)
+        console.log("Response do post: ", response)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const protocol = generateProtocol()
+        const protocolo = generateProtocol()
+        const {nome, email, mensagem} = form;
 
-        setLastMessage({ ...lastMessage, nome: form.nome, protocolo: protocol })
-        setMessages([...messages, { nome: form.nome, email: form.email, mensagem: form.mensagem, protocolo: protocol }])
+        const message = {nome, email, mensagem, protocolo}
+
+        saveMessage(message)
+
+        setLastMessage({ ...lastMessage, nome: nome, protocolo: protocolo })       
 
         setStatus(true)
         setForm({ nome: "", email: "", mensagem: "" })
