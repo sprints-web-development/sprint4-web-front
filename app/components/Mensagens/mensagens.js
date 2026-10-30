@@ -13,8 +13,8 @@ export default function Mensagens() {
     const [messages, setMessages] = useState([])
     const [errors, setErrors] = useState({ isError: false, textError: "" })
     const [authorized, setAuthorized] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const router = useRouter()
+    const [checking, setChecking] = useState(true)
+    const [loading, setLoading] = useState(false)
     const getMessages = async () => {
         try {
             const response = await api.get('/messages')
@@ -30,20 +30,43 @@ export default function Mensagens() {
         const isAuthenticated = localStorage.getItem('autenticado')
 
         if (isAuthenticated !== "true") {
-            router.replace('/')
+            setChecking(false)
             return
         }
 
         setAuthorized(true)
+        setChecking(false)
+        setLoading(true)
+
         getMessages()
     }, [])
 
-    if (!authorized || loading) {
+    if (checking) {
         return (
             <div className="flex min-h-dvh w-full items-center justify-center bg-brand-cream">
-                <div className="flex flex-col items-center gap-3">
-                    <p className="text-sm font-semibold text-brand-grey">Carregando mensagens...</p>
-                </div>
+                <p className="text-sm font-semibold text-brand-grey">
+                    Verificando autenticação...
+                </p>
+            </div>
+        )
+    }
+
+    if (!authorized) {
+        return (
+            <div className="flex min-h-dvh w-full items-center justify-center bg-brand-cream">
+                <p className="text-sm font-semibold text-brand-grey">
+                    Você não está autenticado e não tem acesso a essa rota.
+                </p>
+            </div>
+        )
+    }
+
+    if (loading) {
+        return (
+            <div className="flex min-h-dvh w-full items-center justify-center bg-brand-cream">
+                <p className="text-sm font-semibold text-brand-grey">
+                    Carregando mensagens...
+                </p>
             </div>
         )
     }
@@ -106,16 +129,11 @@ export default function Mensagens() {
                             acompanhar cada solicitação.
                         </p>
                     </div>
-
                 </section>
-
-                {/* Lista de mensagens */}
                 <section className="flex flex-col gap-6">
-
                     <div className="flex flex-wrap items-end justify-between gap-3">
                         <div>
                             <SectionTag name="CENTRAL DE CONTATO" color="blue" />
-
                             <h2 className="text-2xl font-extrabold text-brand-primary">
                                 Mensagens recebidas
                             </h2>
