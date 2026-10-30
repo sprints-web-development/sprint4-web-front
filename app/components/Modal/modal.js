@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import SectionTag from "../SectionTag/sectionTag";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Error from "../Erro/erro";
 export default function ModalAutenticacao({ isOpenModal, closeModal }) {
 
     const emailRef = useRef()
@@ -20,6 +21,7 @@ export default function ModalAutenticacao({ isOpenModal, closeModal }) {
         if (email !== "equipe@snapnote.com" || password !== "SnapNote3ºNext") {
             setErrors({ isError: true, textError: "Credenciais Inválidas!" })
         } else {
+            localStorage.setItem('autenticado', 'true')
             router.push('/mensagens')
         }
     }
@@ -29,7 +31,6 @@ export default function ModalAutenticacao({ isOpenModal, closeModal }) {
         setForm({ email: "", password: "" })
         emailRef.current.focus()
         validate(form.email, form.password)
-        console.log("O cara clicou em validar hein")
     }
 
     return (
@@ -43,9 +44,7 @@ export default function ModalAutenticacao({ isOpenModal, closeModal }) {
                         <SectionTag name={"Insira suas credenciais para acessar as mensagens enviadas pelos visitantes do site"} />
                     </div>
                     {errors.isError ?
-                        <p className="text-sm text-red-400">
-                            {errors.textError}.
-                        </p>
+                        <Error textError={errors.textError} />
                         : null
                     }
                     <form id="formContact" onSubmit={handleSubmit} className="z-100">

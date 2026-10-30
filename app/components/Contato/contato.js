@@ -28,7 +28,6 @@ export default function Contato() {
             const response = await api.get('/messages')
             setMessages(response.data)
         } catch (error) {
-            console.error("Erro: ", error)
             setErrors({ isError: true, textError: error.toString() })
         }
     }

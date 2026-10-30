@@ -11,6 +11,7 @@ import Time from "./components/Time/Time";
 import Top from "./components/Top/top";
 import ModalAutenticacao from "./components/Modal/modal";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
 
@@ -22,9 +23,14 @@ export default function LandingPage() {
     { nome: "Gabriel Cardoso", rm: "RM571846", path: "/images/group/gabrielC.jpeg" },
   ]
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const router = useRouter()
   const handleOpenModal = () => {
-    setIsModalOpen(true);
+    const isAuthenticated = localStorage.getItem('autenticado')
+    if(isAuthenticated !== "true"){
+      setIsModalOpen(true);
+      return
+    }
+    router.push('/mensagens')
   };
   
   const handleCloseModal = () => {

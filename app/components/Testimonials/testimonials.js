@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from "react";
-import SectionTag from "../SectionTag/sectionTag";
+import Error from "../Erro/erro";
 
-export default function Testimonial({ users = [], errors }) {
+export default function Testimonial({ users, errors }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const nextTestimonial = () => {
@@ -24,11 +24,7 @@ export default function Testimonial({ users = [], errors }) {
 
     if (errors?.isError) {
         return (
-            <div className="flex flex-col gap-3">
-                <p className="text-sm text-red-400">
-                    {errors.textError}.
-                </p>
-            </div>
+            <Error textError={errors.textError}/>
         );
     }
 
