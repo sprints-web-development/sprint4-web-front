@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Error from "../Erro/erro";
 
 export default function Testimonial({ users, errors }) {
@@ -22,13 +22,20 @@ export default function Testimonial({ users, errors }) {
         }
     };
 
-    if (errors?.isError) {
+    if (errors.some((error) => error.isError)) {
         return (
-            <Error textError={errors.textError}/>
-        );
+            errors.map((error, index) => (
+                <Error key={index} textError={error.textError}>
+                    {error.origin === 1 ?
+                        'Erro ao buscar usuários:'
+                        :
+                        'Erro ao buscar mensagens:'}
+                </Error>
+            ))
+        )
     }
 
-    if (!users.length && !errors.isError) {
+    if (!users.length && !errors.some((error) => error.isError)) {
         return (
             <div className="flex flex-col gap-3">
                 <p className="text-sm text-brand-snow">

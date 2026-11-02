@@ -5,47 +5,32 @@ import { useEffect, useState } from "react";
 import api from "@/app/api/api";
 import Link from "next/link";
 import Error from "../Erro/erro";
-import { useRouter } from "next/navigation";
 import SectionTag from "../SectionTag/sectionTag";
+import useMessages from "@/app/hooks/useMessages";
+import { useRouter } from "next/navigation";
 
 export default function Mensagens() {
 
-    const [messages, setMessages] = useState([])
-    const [errors, setErrors] = useState({ isError: false, textError: "" })
-    const [authorized, setAuthorized] = useState(false)
-    const [checking, setChecking] = useState(true)
-    const [loading, setLoading] = useState(false)
-    const getMessages = async () => {
-        try {
-            const response = await api.get('/messages')
-            setMessages(response.data)
-        } catch (error) {
-            setErrors({ isError: true, textError: error.toString() })
-        } finally {
-            setLoading(false)
-        }
-    }
+    const [authorized, setAuthorized] = useState(true)
+    const { messages, messageErrors, loading } = useMessages(authorized)
+    const router = useRouter()
 
     useEffect(() => {
         const isAuthenticated = localStorage.getItem('autenticado')
 
         if (isAuthenticated !== "true") {
-            setChecking(false)
+            setAuthorized(false)
             return
         }
 
         setAuthorized(true)
-        setChecking(false)
-        setLoading(true)
-
-        getMessages()
     }, [])
 
-    if (checking) {
+    if (loading) {
         return (
             <div className="flex min-h-dvh w-full items-center justify-center bg-brand-cream">
                 <p className="text-sm font-semibold text-brand-grey">
-                    Verificando autenticação...
+                    Carregando mensagens...
                 </p>
             </div>
         )
@@ -61,23 +46,17 @@ export default function Mensagens() {
         )
     }
 
-    if (loading) {
-        return (
-            <div className="flex min-h-dvh w-full items-center justify-center bg-brand-cream">
-                <p className="text-sm font-semibold text-brand-grey">
-                    Carregando mensagens...
-                </p>
-            </div>
-        )
+    if (messageErrors.isError) {
+        return <Error textError={messageErrors.textError} />
     }
 
-    if (errors.isError) {
-        return <Error textError={errors.textError} />
+    const handleExit = () => {
+        localStorage.setItem('autenticado', 'false')
+        router.push('/')
     }
 
     return (
         <main className="min-h-dvh w-full bg-brand-cream px-20 py-12.5 max-[850px]:px-7.5 max-[850px]:py-8 max-[500px]:px-5">
-
             <div className="mx-auto flex w-full max-w-7xl flex-col gap-12">
                 <header className="flex flex-wrap items-center justify-between gap-5 border-b border-brand-grey/30 pb-7.5">
                     <div>
@@ -90,13 +69,18 @@ export default function Mensagens() {
                         </p>
                     </div>
 
-                    <Link href="/" className="group flex items-center gap-2 rounded-full border-2 border-brand-primary px-5 py-3 text-sm font-bold transition-all duration-300 hover:border-brand-yellow hover:bg-brand-yellow">
-                        <span className="transition-transform duration-300 group-hover:-translate-x-1">
-                            {'<'}
-                        </span>
-                        Voltar ao site
-                    </Link>
+                    <div className="flex items-center justify-center gap-3">
+                        <button onClick={handleExit} className="group flex items-center gap-2 rounded-full border-2 border-brand-primary px-5 py-3 text-sm font-bold transition-all duration-300 hover:border-brand-red hover:bg-brand-red">
+                            Sair
+                        </button>
 
+                        <Link href='/' className="group flex items-center gap-2 rounded-full border-2 border-brand-primary px-5 py-3 text-sm font-bold transition-all duration-300 hover:border-brand-yellow hover:bg-brand-yellow">
+                            <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                                {'<'}
+                            </span>
+                            Voltar ao site
+                        </Link>
+                    </div>
                 </header>
 
                 <section className="grid grid-cols-[1fr_2fr] gap-5 max-[650px]:grid-cols-1">

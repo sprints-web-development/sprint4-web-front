@@ -13,7 +13,6 @@ export default function ModalAutenticacao({ isOpenModal, closeModal }) {
     const router = useRouter()
 
     const handleChange = (e) => {
-        console.log("Teste")
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 

@@ -3,39 +3,18 @@ import { useEffect, useState } from "react";
 import ContactUs from "../UI-Components/ContactUs/ContactUs";
 import api from "@/app/api/api";
 import Testimonial from "../Testimonials/testimonials";
+import useUsers from "@/app/hooks/useUser";
+import useMessages from "@/app/hooks/useMessages";
 
 export default function Contato() {
 
     const [form, setForm] = useState({ nome: "", email: "", mensagem: "" })
-    const [messages, setMessages] = useState([])
     const [status, setStatus] = useState(false)
     const [lastMessage, setLastMessage] = useState({ nome: "", protocolo: 0 })
-    const [users, setUsers] = useState([])
-    const [errors, setErrors] = useState({ isError: false, textError: "" })
+    const {users, userErrors} = useUsers()
+    const {messages, messageErrors} = useMessages(true)
 
-    const getUsers = async () => {
-        try {
-            const response = await api.get('/users')
-            setUsers(response.data)
-        } catch (error) {
-            console.error("Erro: ", error)
-            setErrors({ isError: true, textError: error.toString() })
-        }
-    }
-    
-    const getMessages = async () => {
-        try {
-            const response = await api.get('/messages')
-            setMessages(response.data)
-        } catch (error) {
-            setErrors({ isError: true, textError: error.toString() })
-        }
-    }
-
-    useEffect(() => {
-        getUsers()
-        getMessages()
-    }, [])
+    const errors = [{...userErrors, origin: 1}, {...messageErrors, origin: 2}]
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.id]: e.target.value })
@@ -52,8 +31,7 @@ export default function Contato() {
     }
 
     const saveMessage = async(message) => {
-        const response = await api.post('/messages', message)
-        console.log("Response do post: ", response)
+        await api.post('/messages', message)
     }
 
     const handleSubmit = (e) => {
