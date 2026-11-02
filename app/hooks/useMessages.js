@@ -20,7 +20,6 @@ export default function useMessages(isAuthenticated) {
         if(isAuthenticated){
             getMessages()
         }
-        setLoading(false)
     }, [isAuthenticated]);
 
     return { messages, messageErrors, loading };

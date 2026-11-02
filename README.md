@@ -15,7 +15,7 @@ Este projeto é a evolução da Sprint 3 (landing page) e foi entregue em conjun
 - Carrossel de depoimentos alimentado por uma API (MockAPI).
 - Formulário de contato que envia a mensagem para a API e gera um **protocolo único** de atendimento.
 - Página **Experimente** (`/experimente`) para acessar o aplicativo.
-- **Área restrita da equipe** (`/mensagens`): rota privada, acessível apenas após login, que lista as mensagens enviadas pelos visitantes.
+- **Área restrita da equipe** (`/mensagens`): rota privada, acessível apenas após login, que lista as mensagens enviadas pelos visitantes e permite sair da sessão.
 - Layout responsivo para **Desktop, Tablet e Mobile**.
 
 ## Rotas
@@ -31,7 +31,9 @@ Este projeto é a evolução da Sprint 3 (landing page) e foi entregue em conjun
 ## Tecnologias utilizadas
 
 - **Next.js 16** (App Router)
-- **React 19** — componentização, props, hooks nativos (`useState`, `useEffect`, `useRef`) e rotas
+- **React 19** — componentização, props, rotas e hooks
+  - **Hooks nativos:** `useState`, `useEffect` e `useRef`
+  - **Hooks customizados:** `useUsers` e `useMessages` (em `app/hooks/`), que separam a lógica de consumo da API da parte visual dos componentes
 - **Tailwind CSS 4** — estilização via classes utilitárias (ver `postcss.config.mjs` e o bloco `@theme` em `app/globals.css`)
 - **Axios** — consumo de API (instância configurada em `app/api/api.js`)
 - **MockAPI** — API mockada (`/users` e `/messages`)
@@ -48,8 +50,7 @@ Pré-requisito: **Node.js 20.9 ou superior** e **npm**.
 
 ```bash
 git clone https://github.com/sprints-web-development/sprint4-web-front.git
-cd https://github.com/sprints-web-development/sprint4-web-front.git
-code .
+cd sprint4-web-front
 npm install
 ```
 
@@ -91,18 +92,31 @@ A rota privada `/mensagens` exige autenticação.
 | Campo | Valor |
 |---|---|
 | E-mail | `equipe@snapnote.com` |
-| Senha | `SnapNote3Next` |
+| Senha | `SnapNote3ºNext` |
 
 **Como testar:**
 
-1. Acesse a página inicial e clique em **"Ver Mensagens (Equipe)"** no menu.
+1. Acesse a página inicial e clique em **"Ver Mensagens (Equipe)"** no menu (no celular, pelo menu lateral).
 2. Informe o e-mail e a senha acima no modal de autenticação (atenção ao caractere `º` na senha).
 3. Após o login, você é levado para `/mensagens`.
-4. Para testar a proteção da rota, abra uma aba anônima e acesse `/mensagens` diretamente: o acesso é negado.
+4. Clique em **"Sair"** para encerrar a sessão.
+5. Para testar a proteção da rota, abra uma aba anônima (ou saia da sessão) e acesse `/mensagens` diretamente: o acesso é negado.
 
 > A autenticação é uma simulação para fins acadêmicos: a validação das credenciais e a sessão (`localStorage`) são feitas no front-end.
 
 **Para ter mensagens na caixa**, envie uma mensagem pelo formulário de contato na página inicial (seção "Contato"). O protocolo gerado aparece na confirmação e também na área restrita.
+
+---
+
+## Uso de Inteligência Artificial no projeto
+
+A IA (**Claude, da Anthropic**) foi utilizada como apoio ao desenvolvimento e à documentação desta sprint, principalmente para:
+
+- **Revisão dos requisitos:** comparar o projeto com o enunciado da Sprint 4 e listar o que ainda precisava ser implementado (rotas privadas, consumo de API, hooks customizados, documentação e entrega).
+- **Orientação sobre hooks customizados:** explicar o conceito e sugerir quais lógicas separar da parte visual (consumo de usuários e mensagens da API, autenticação e carrossel).
+- **Documentação:** gerar e atualizar este `README.md` com base no conteúdo real do projeto.
+
+A IA atuou como revisora técnica. As decisões de implementação, a escrita do código e os testes foram feitos pelos integrantes da equipe.
 
 ---
 
@@ -112,6 +126,9 @@ A rota privada `/mensagens` exige autenticação.
 app/
 ├── api/
 │   └── api.js              # Instância do axios (URL base do MockAPI)
+├── hooks/
+│   ├── useMessages.js      # Hook customizado: busca as mensagens na API
+│   └── useUser.js          # Hook customizado (useUsers): busca os usuários/depoimentos
 ├── experimente/
 │   └── page.js             # Rota pública /experimente
 ├── mensagens/
