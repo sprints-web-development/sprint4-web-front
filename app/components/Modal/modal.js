@@ -17,7 +17,7 @@ export default function ModalAutenticacao({ isOpenModal, closeModal }) {
     }
 
     const validate = (email, password) => {
-        if (email !== "equipe@snapnote.com" || password !== "SnapNote3ºNext") {
+        if (email !== "equipe@snapnote.com" || password !== "SnapNote3Next") {
             setErrors({ isError: true, textError: "Credenciais Inválidas!" })
         } else {
             localStorage.setItem('autenticado', 'true')
