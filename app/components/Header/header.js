@@ -28,7 +28,7 @@ export default function Header({openModal}) {
         </ul>
       </nav>
       <MobileButton menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <MobileMenu menuOpen={menuOpen} />
+      <MobileMenu menuOpen={menuOpen} openModal={openModal} />
     </header>
 
   );

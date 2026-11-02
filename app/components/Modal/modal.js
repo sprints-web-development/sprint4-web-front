@@ -34,7 +34,7 @@ export default function ModalAutenticacao({ isOpenModal, closeModal }) {
 
     return (
         <>
-            <div className={`relative min-h-dvh w-full ${isOpenModal ? 'flex flex-col' : 'hidden'} items-center justify-center z-10`}>
+            <div className={`relative p-5 min-h-dvh w-full ${isOpenModal ? 'flex flex-col' : 'hidden'} items-center justify-center z-10`}>
                 <button className="absolute top-[10%] right-[10%] cursor-pointer" onClick={() => closeModal()}>
                     <Image alt="ícone de fechar seção" className="cursor-pointer" src={`/images/icons/close.png`} width={35} height={35} />
                 </button>

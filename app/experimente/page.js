@@ -30,7 +30,7 @@ export default function LinksPage() {
         <>
           <Header openModal={handleOpenModal} />
           <Experimente />
-          <Footer />
+          <Footer openModal={handleOpenModal} />
         </>
       }
     </>

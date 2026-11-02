@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Footer() {
+export default function Footer({openModal}) {
     return (
         <footer className="grid w-full items-center gap-7.5 border-t border-brand-primary bg-brand-cream px-7.5 py-10 grid-cols-[2fr_.7fr_.7fr_1.4fr] max-[850px]:grid-cols-[2fr_1fr_1fr] max-[550px]:grid-cols-1 max-[550px]:gap-5">
             <div className="flex flex-col items-start gap-2">
@@ -19,6 +19,11 @@ export default function Footer() {
             <nav className="grid gap-2.5" aria-label="Navegação complementar">
                 <a href="/#publico" className="font-mansrope text-[12px] text-brand-primary transition-colors duration-300 hover:text-brand-blue">Público-alvo</a>
                 <a href="/#equipe" className="font-mansrope text-[12px] text-brand-primary transition-colors duration-300 hover:text-brand-blue">Equipe</a>
+            </nav>
+
+            <nav className="grid gap-2.5" aria-label="Navegação complementar">
+                <a href="/experimente" className="font-mansrope text-[12px] text-brand-primary transition-colors duration-300 hover:text-brand-blue">Experimente</a>
+                <p onClick={() => openModal()} className="font-mansrope text-[12px] text-brand-primary transition-colors duration-300 hover:text-brand-blue">Ver Mensagens (Equipe)</p>
             </nav>
 
             <div className="text-right max-[850px]:col-span-full max-[850px]:text-left max-[550px]:col-auto">

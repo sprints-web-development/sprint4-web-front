@@ -10,7 +10,6 @@ export default function useMessages(isAuthenticated) {
             const response = await api.get('/messages')
             setMessages(response.data)
         } catch (error) {
-            console.error("Erro: ", error)
             setMessageErrors({ isError: true, textError: error.toString() })
         } finally {
             setLoading(false)

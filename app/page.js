@@ -52,7 +52,7 @@ export default function LandingPage() {
           <Caracteristicas />
           <Time time={team} />
           <Contato />
-          <Footer />
+          <Footer openModal={handleOpenModal} />
         </>
       }
     </>

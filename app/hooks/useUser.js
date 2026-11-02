@@ -10,7 +10,6 @@ export default function useUsers() {
             const response = await api.get('/users')
             setUsers(response.data)
         } catch (error) {
-            console.error("Erro: ", error)
             setUserErrors({ isError: true, textError: error.toString() })
         }
     }
