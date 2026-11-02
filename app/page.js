@@ -21,28 +21,29 @@ export default function LandingPage() {
     { nome: "Gabriel Luna Maia", rm: "RM570982", path: "/images/group/gabrielL.jpeg" },
     { nome: "João Lucas Magordo", rm: "RM572419", path: "/images/group/joaoL.jpeg" },
     { nome: "Gabriel Cardoso", rm: "RM571846", path: "/images/group/gabrielC.jpeg" },
+    { nome: "Equipe All New Vision em 3º lugar no Next", rm: "", path: "/images/group/allNewVision.jpeg" },
   ]
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter()
   const handleOpenModal = () => {
     const isAuthenticated = localStorage.getItem('autenticado')
-    if(isAuthenticated !== "true"){
+    if (isAuthenticated !== "true") {
       setIsModalOpen(true);
       return
     }
     router.push('/mensagens')
   };
-  
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
   return (
     <>
-      <Header openModal={handleOpenModal} />
       {isModalOpen ?
         <ModalAutenticacao isOpenModal={isModalOpen} closeModal={handleCloseModal} /> :
         <>
+          <Header openModal={handleOpenModal} />
           <Top />
           <Problem />
           <Solution />
@@ -51,9 +52,9 @@ export default function LandingPage() {
           <Caracteristicas />
           <Time time={team} />
           <Contato />
+          <Footer />
         </>
       }
-      <Footer />
     </>
   );
 }

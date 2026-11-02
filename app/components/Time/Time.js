@@ -3,7 +3,7 @@
 import Image from "next/image";
 import SectionTag from "../SectionTag/sectionTag";
 import TeamCard from "../UI-Components/TeamCard/TeamCard";
-export default function Time({ time }) {
+export default function Time({ time, next }) {
 
     return (
         <section id="equipe" className="block w-full bg-brand-cream px-20 py-20 max-[1250px]:px-7.5 max-[850px]:px-7.5 max-[500px]:px-5">
@@ -14,7 +14,7 @@ export default function Time({ time }) {
                 </div>
             </div>
 
-            <div className="grid grid-cols-6 gap-5 max-[991px]:grid-cols-2">
+            <div className="grid grid-cols-3 gap-5 max-[991px]:grid-cols-2">
 
                 {time && time.length > 0 ?
                     time.map((partner, index) => (

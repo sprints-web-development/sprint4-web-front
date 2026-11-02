@@ -1,38 +1,57 @@
 # SnapNote
 
-Landing page do projeto **SnapNote**, migrada de HTML/CSS/JS estático para **React (Next.js)**, com estrutura de componentes reutilizáveis e persistência local de dados.
+Aplicação web do projeto **SnapNote**, desenvolvida em **React (Next.js)** e estilizada com **Tailwind CSS**. O SnapNote é a solução criada para o Challenge: transforma fotos de lousas, cadernos e slides em registros organizados, pesquisáveis e prontos para revisão.
 
-O SnapNote é a solução desenvolvida para o Challenge, que transforma fotos de lousas, cadernos e slides em registros organizados, pesquisáveis e prontos para revisão.
+Este projeto é a evolução da Sprint 3 (landing page) e foi entregue em conjunto para as disciplinas de **Front-End Design** e **Web Development** (Sprint 4).
 
-Deploy: **https://snapnote-web-development.vercel.app/**
+- **Deploy (Vercel):** https://sprint4-web-front-six.vercel.app/
+- **Repositório (GitHub):** https://github.com/sprints-web-development/sprint4-web-front
+
+---
+
+## Funcionalidades
+
+- Landing page com as seções: A Solução, Problema, Público-alvo, Galeria, Características, Nossa Equipe e Contato.
+- Carrossel de depoimentos alimentado por uma API (MockAPI).
+- Formulário de contato que envia a mensagem para a API e gera um **protocolo único** de atendimento.
+- Página **Experimente** (`/experimente`) para acessar o aplicativo.
+- **Área restrita da equipe** (`/mensagens`): rota privada, acessível apenas após login, que lista as mensagens enviadas pelos visitantes.
+- Layout responsivo para **Desktop, Tablet e Mobile**.
+
+## Rotas
+
+| Rota | Tipo | Descrição |
+|---|---|---|
+| `/` | Pública | Landing page do SnapNote |
+| `/experimente` | Pública | Página para experimentar o aplicativo |
+| `/mensagens` | **Privada** | Caixa de mensagens da equipe (exige login) |
 
 ---
 
 ## Tecnologias utilizadas
 
 - **Next.js 16** (App Router)
-- **React 19**
-- **Tailwind CSS 4** — estilização da aplicação via classes utilitárias (ver `postcss.config.mjs` e o bloco `@theme` em `app/globals.css`)
+- **React 19** — componentização, props, hooks nativos (`useState`, `useEffect`, `useRef`) e rotas
+- **Tailwind CSS 4** — estilização via classes utilitárias (ver `postcss.config.mjs` e o bloco `@theme` em `app/globals.css`)
+- **Axios** — consumo de API (instância configurada em `app/api/api.js`)
+- **MockAPI** — API mockada (`/users` e `/messages`)
+- **next/image** e **next/link** — imagens otimizadas e navegação entre rotas
 - **JavaScript**
-- **CSS** — reduzido ao mínimo necessário em `globals.css` (reset base, `@font-face` das fontes customizadas e a animação `fadeInSuccess`); todo o restante da estilização visual é feito em Tailwind
-- **localStorage** — armazenamento das mensagens enviadas pelo formulário de contato
-- **Math** (`Math.random`, `Math.floor`) — geração de protocolo único para cada mensagem enviada
-- **next/image** — otimização das imagens da galeria e da equipe
 - **ESLint** — padronização de código
+- **Git + Vercel** — versionamento e deploy
 
 ---
 
 ## Como instalar as dependências
 
-Clone o repositório e instale as dependências com npm:
+Pré-requisito: **Node.js 20.9 ou superior** e **npm**.
 
 ```bash
-git clone https://github.com/sprints-web-development/sprint3-web-development.git
-cd sprint3-web-development
+git clone https://github.com/sprints-web-development/sprint4-web-front.git
+cd https://github.com/sprints-web-development/sprint4-web-front.git
+code .
 npm install
 ```
-
----
 
 ## Como executar o projeto
 
@@ -51,35 +70,39 @@ npm run build
 npm run start
 ```
 
----
+## Como executar os servidores (Back-end)
 
-## Usuários e senhas de teste
+O projeto **não possui servidor próprio**. Todo o back-end é uma API mockada hospedada no **MockAPI**, que já está no ar. Não é necessário subir nenhum servidor local, basta ter conexão com a internet.
 
-Este projeto **não possui autenticação**. Todas as seções e funcionalidades (incluindo o formulário de contato) estão acessíveis livremente, sem necessidade de login.
+- **URL base:** `https://6adfdd0f8e42963c8d5e71d0.mockapi.io/snapnote`
+- **Recursos utilizados:**
+  - `GET /users` — usuários exibidos no carrossel de depoimentos
+  - `GET /messages` — lista as mensagens na área restrita
+  - `POST /messages` — grava a mensagem enviada pelo formulário de contato
 
----
-
-## Uso de Inteligência Artificial no projeto
-
-A IA (**Claude, da Anthropic**) foi utilizada como apoio ao longo de todo o desenvolvimento desta sprint, principalmente para:
-
-- Revisar a migração da landing page estática para componentes React, apontando inconsistências (ex.: `id` duplicado entre as seções de galeria, ausência de `localStorage`/`Math` nos requisitos técnicos).
-- Ajudar a estruturar o componente `Mensagem`, exibido após o envio do formulário de contato, incluindo a definição de props (`nome`, `protocolo`) e o estilo CSS correspondente (`.contact-success`).
-- Revisar e corrigir bugs reais de lógica no `Contato.js`, como a falta de `return` na função recursiva `generateProtocol` (que gera um protocolo único validando contra mensagens já salvas no `localStorage`) e um bug em que o componente `Mensagem` exibia dados fixos em vez dos dados realmente enviados pelo usuário.
-- Gerar este `README.md`, com base no conteúdo real do projeto (zip enviado à IA), estruturando a documentação de acordo com os itens exigidos pelo enunciado da sprint.
-- Migrar a estilização do projeto de CSS puro (`globals.css`) para **Tailwind CSS**, para atender ao requisito da Sprint 4, convertendo cada componente para classes utilitárias e preservando a identidade visual, o layout e a responsividade originais (desktop, tablet e mobile).
-
-Nenhum trecho de código foi gerado sem revisão manual da equipe — a IA atuou como uma revisora técnica e assistente de escrita, não como autora única do código.
+A URL base está configurada em `app/api/api.js`.
 
 ---
 
-## Deploy
+## Usuários e senhas para teste
 
-**Vercel:** https://snapnote-web-development.vercel.app/
+A rota privada `/mensagens` exige autenticação.
 
-## Repositório
+| Campo | Valor |
+|---|---|
+| E-mail | `equipe@snapnote.com` |
+| Senha | `SnapNote3ºNext` |
 
-**GitHub:** https://github.com/sprints-web-development/sprint3-web-development
+**Como testar:**
+
+1. Acesse a página inicial e clique em **"Ver Mensagens (Equipe)"** no menu.
+2. Informe o e-mail e a senha acima no modal de autenticação (atenção ao caractere `º` na senha).
+3. Após o login, você é levado para `/mensagens`.
+4. Para testar a proteção da rota, abra uma aba anônima e acesse `/mensagens` diretamente: o acesso é negado.
+
+> A autenticação é uma simulação para fins acadêmicos: a validação das credenciais e a sessão (`localStorage`) são feitas no front-end.
+
+**Para ter mensagens na caixa**, envie uma mensagem pelo formulário de contato na página inicial (seção "Contato"). O protocolo gerado aparece na confirmação e também na área restrita.
 
 ---
 
@@ -87,25 +110,46 @@ Nenhum trecho de código foi gerado sem revisão manual da equipe — a IA atuou
 
 ```
 app/
+├── api/
+│   └── api.js              # Instância do axios (URL base do MockAPI)
+├── experimente/
+│   └── page.js             # Rota pública /experimente
+├── mensagens/
+│   └── page.js             # Rota privada /mensagens
 ├── components/
-│   ├── Header/          # Cabeçalho e menu de navegação
-│   ├── Top/              # Seção hero ("A Solução")
-│   ├── Problem/           # Seção do problema
-│   ├── Solution/          # Explicação da solução
-│   ├── Publics/           # Público-alvo
-│   ├── Galeria/           # Galeria de imagens
-│   ├── Caracteristicas/   # Características / segunda galeria
-│   ├── Time/              # Nossa Equipe (recebe os dados via props)
-│   ├── Contato/           # Formulário de contato (localStorage + Math)
-│   ├── Mensagem/          # Confirmação exibida após o envio do formulário
-│   ├── SectionTag/        # Label reutilizável de cada seção
-│   └── Footer/            # Rodapé
-├── globals.css
-└── page.js                # Monta as seções e passa os dados da equipe via props
+│   ├── Header/             # Cabeçalho e navegação
+│   ├── Top/                # Seção inicial ("A Solução")
+│   ├── Problem/            # Seção do problema
+│   ├── Publics/            # Público-alvo
+│   ├── Galeria/            # Galeria de imagens
+│   ├── Caracteristicas/    # Características do produto
+│   ├── Time/               # Nossa Equipe (dados via props)
+│   ├── Contato/            # Seção de contato (formulário + depoimentos)
+│   ├── Testimonials/       # Carrossel de depoimentos (dados da API)
+│   ├── Mensagem/           # Confirmação exibida após o envio do formulário
+│   ├── Modal/              # Modal de autenticação da equipe
+│   ├── Mensagens/          # Caixa de mensagens da área restrita
+│   ├── Experimente/        # Conteúdo da página Experimente
+│   ├── Erro/               # Componente de exibição de erros
+│   ├── SectionTag/         # Rótulo reutilizável das seções
+│   ├── Footer/             # Rodapé
+│   └── UI-Components/      # Componentes de interface reutilizáveis
+├── globals.css             # Tema Tailwind, fontes e base
+├── layout.js               # Layout raiz
+└── page.js                 # Landing page (rota /)
+public/                     # Imagens e arquivos estáticos
 ```
 
 ---
 
 ## Integrantes
 
-Consulte o arquivo `INTEGRANTES.txt` na raiz do projeto.
+| Nome | RM |
+|---|---|
+| Bruno Guilherme Gonçalves | RM573697 |
+| Gabriel Luna Maia | RM570982 |
+| Gabriel Cardoso | RM571846 |
+| João Lucas Magordo | RM572419 |
+| Murilo Vieira dos Reis | RM573764 |
+
+Também disponível em `INTEGRANTES.txt`, na raiz do projeto.
