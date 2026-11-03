@@ -97,7 +97,7 @@ A rota privada `/mensagens` exige autenticação.
 **Como testar:**
 
 1. Acesse a página inicial e clique em **"Ver Mensagens (Equipe)"** no menu (no celular, pelo menu lateral).
-2. Informe o e-mail e a senha acima no modal de autenticação (atenção ao caractere `º` na senha).
+2. Informe o e-mail e a senha acima no modal de autenticação.
 3. Após o login, você é levado para `/mensagens`.
 4. Clique em **"Sair"** para encerrar a sessão.
 5. Para testar a proteção da rota, abra uma aba anônima (ou saia da sessão) e acesse `/mensagens` diretamente: o acesso é negado.
