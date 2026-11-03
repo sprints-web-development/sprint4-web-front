@@ -4,7 +4,10 @@ import api from "@/app/api/api";
 export default function useMessages(isAuthenticated) {
     const [messages, setMessages] = useState([])
     const [messageErrors, setMessageErrors] = useState({ isError: false, textError: "" })
+    const [sendError, setSendError] = useState("")
+    const [sending, setSending] = useState(false)
     const [loading, setLoading] = useState(true)
+
     const getMessages = async () => {
         try {
             const response = await api.get('/messages')
@@ -16,11 +19,26 @@ export default function useMessages(isAuthenticated) {
         }
     }
 
+    const createMessage = async (message) => {
+        setSending(true)
+        setSendError("")
+        try {
+            const response = await api.post('/messages', message)
+            setMessages(prev => [...prev, response.data])
+            return true
+        } catch (error) {
+            setSendError(`Não foi possível enviar sua mensagem. ${error}`)
+            return false
+        } finally {
+            setSending(false)
+        }
+    }
+
     useEffect(() => {
         if(isAuthenticated){
             getMessages()
         }
     }, [isAuthenticated]);
 
-    return { messages, messageErrors, loading };
+    return { messages, messageErrors, loading, createMessage, sending, sendError };
 }

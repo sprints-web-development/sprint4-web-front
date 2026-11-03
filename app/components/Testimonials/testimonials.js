@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Error from "../Erro/erro";
+import Image from "next/image";
 
 export default function Testimonial({ users, errors }) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -87,7 +88,9 @@ export default function Testimonial({ users, errors }) {
                     <div className="flex items-center gap-4">
                         <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border-2 border-brand-yellow">
                             {user.avatar ? (
-                                <img
+                                <Image
+                                    height={80}
+                                    width={80}
                                     src={user.avatar}
                                     alt={`Foto de perfil de ${user.name}`}
                                     className="h-full w-full object-cover"

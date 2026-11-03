@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import SectionTag from "../SectionTag/sectionTag";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

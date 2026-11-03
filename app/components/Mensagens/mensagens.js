@@ -2,7 +2,6 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import api from "@/app/api/api";
 import Link from "next/link";
 import Error from "../Erro/erro";
 import SectionTag from "../SectionTag/sectionTag";

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SectionTag from "../SectionTag/sectionTag";
+import Link from "next/link";
 
 export default function Top() {
     return (
@@ -14,8 +15,8 @@ export default function Top() {
                         prontos para a sua próxima revisão.
                     </p>
                     <div className="my-5 flex gap-3.75 max-[370px]:flex-col">
-                        <a href="#galeria"><button className="cursor-pointer rounded-[50px] bg-brand-primary px-7.5 py-5 text-[15px] font-light text-brand-cream transition-[.3s] ease-in hover:border hover:border-brand-primary hover:bg-brand-cream hover:text-brand-primary">Conheça a solução</button></a>
-                        <a href="#galeria2"><button className="cursor-pointer rounded-[15px] border border-brand-primary bg-brand-cream px-7.5 py-5 text-[15px] font-bold text-brand-primary transition-[.3s] ease-in hover:border-brand-cream hover:bg-brand-primary hover:text-brand-cream">Ver protótipo</button></a>
+                        <Link href="#galeria"><button className="cursor-pointer rounded-[50px] bg-brand-primary px-7.5 py-5 text-[15px] font-light text-brand-cream transition-[.3s] ease-in hover:border hover:border-brand-primary hover:bg-brand-cream hover:text-brand-primary">Conheça a solução</button></Link>
+                        <Link href="#galeria2"><button className="cursor-pointer rounded-[15px] border border-brand-primary bg-brand-cream px-7.5 py-5 text-[15px] font-bold text-brand-primary transition-[.3s] ease-in hover:border-brand-cream hover:bg-brand-primary hover:text-brand-cream">Ver protótipo</button></Link>
                     </div>
                     <div className="my-2.5 h-px w-[90%] rounded-[5px] bg-brand-light-grey"></div>
                     <div className="flex items-center justify-around p-2.5">
