@@ -18,7 +18,7 @@ export default function ContactUs({ handleChange, handleSubmit, lastMessage, sta
                 <h2 className="text-[clamp(42px,5vw,65px)] font-medium leading-[1.05] text-brand-snow">Vamos transformar<br />registros em<br /><span className="font-playfair text-brand-lime">memórias?</span></h2>
                 <p className="mt-7.5 mb-5 text-brand-light-grey">Quer conhecer melhor o projeto ou compartilhar uma ideia? Fale com a nossa
                     equipe.</p>
-                <p className="text-brand-lime border-b border-brand-lime" href="mailto:equipe@snapnote.com">equipe@snapnote.com ↗</p>
+                <a className="text-brand-lime border-b border-brand-lime" href="mailto:equipe@snapnote.com">equipe@snapnote.com ↗</a>
             </div>
             {sendError && <Error textError={sendError}/>}
             <form id="formContact" onSubmit={handleSubmit}>
@@ -46,7 +46,7 @@ export default function ContactUs({ handleChange, handleSubmit, lastMessage, sta
                     <span>→</span>
                 </button>
                 {status ?
-                    <Mensagem nome={lastMessage.nome} protocolo={lastMessage.protocolo} />
+                    <Mensagem nome={lastMessage.nome}/>
                     : null}
             </form>
         </div>

@@ -9,35 +9,24 @@ export default function Contato() {
 
     const [form, setForm] = useState({ nome: "", email: "", mensagem: "" })
     const [status, setStatus] = useState(false)
-    const [lastMessage, setLastMessage] = useState({ nome: "", protocolo: 0 })
+    const [lastMessage, setLastMessage] = useState({ nome: "" })
     const { users, userErrors } = useUsers()
-    const { messages, messageErrors, createMessage, sending, sendError } = useMessages(true)
+    const { createMessage, sending, sendError } = useMessages(true)
 
-    const errors = [{ ...userErrors, origin: 1 }, { ...messageErrors, origin: 2 }]
+    const errors = [{ ...userErrors, origin: 1 }]
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.id]: e.target.value })
     }
 
-    const generateProtocol = () => {
-        const protocol = Math.floor(Math.random() * 9000) + 1000
-        const exists = messages.filter(message => message.protocolo && message.protocolo === protocol)
-        if (exists.length > 0) {
-            return generateProtocol()
-        } else {
-            return protocol
-        }
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const protocolo = generateProtocol()
         const { nome, email, mensagem } = form;
-        const success = await createMessage({ nome, email, mensagem, protocolo })
+        const success = await createMessage({ nome, email, mensagem })
 
         if (success) {
-            setLastMessage({ nome, protocolo })
+            setLastMessage({ nome })
             setStatus(true)
             setForm({ nome: "", email: "", mensagem: "" })
         }

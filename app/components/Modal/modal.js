@@ -50,12 +50,12 @@ export default function ModalAutenticacao({ isOpenModal, closeModal }) {
                         <div className="grid grid-cols-2 gap-6.25 max-[650px]:grid-cols-1">
                             <div className="flex flex-col">
                                 <label className="font-mansrope text-[10px] text-black-800" htmlFor="nome">SEU E-MAIL</label>
-                                <input ref={emailRef} value={form.email} onChange={handleChange} className="font-mansrope w-full border-b border-[#555] bg-transparent py-3 text-black-800 outline-none focus:border-brand-lime" required type="email" id="nome" name="email" placeholder="voce@email.com" />
+                                <input ref={emailRef} value={form.email} onChange={handleChange} className="font-mansrope w-full border-b border-[#555] bg-transparent py-3 text-black-800 outline-none focus:border-brand-lime" required type="email" id="email" name="email" placeholder="voce@email.com" />
                             </div>
                             <div className="flex flex-col">
                                 <label className="font-mansrope text-[10px] text-black-800" htmlFor="email">SUA SENHA</label>
                                 <div className="flex items-center justify-between">
-                                    <input onChange={handleChange} value={form.password} className="font-mansrope w-full border-b border-[#555] bg-transparent py-3 text-black-800 outline-none focus:border-brand-lime" required type={`${hidden ? 'password' : 'text'}`} id="nome" name="password" placeholder="123456" />
+                                    <input onChange={handleChange} value={form.password} className="font-mansrope w-full border-b border-[#555] bg-transparent py-3 text-black-800 outline-none focus:border-brand-lime" required type={`${hidden ? 'password' : 'text'}`} id="password" name="password" placeholder="123456" />
                                     <Image onClick={() => setHidden(prev => !prev)} alt="ícone de visibilidade de senha" className="cursor-pointer" src={`/images/icons/${hidden ? 'visible' : 'hidden'}.png`} width={30} height={15} />
                                 </div>
                             </div>

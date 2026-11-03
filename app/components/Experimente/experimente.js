@@ -16,8 +16,8 @@ export default function Experimente() {
                     <h2 className="text-[clamp(28px,2vw+15px,40px)] font-medium text-white">Protótipo</h2>
                     <p className="max-w-105 text-white">Navegue pelas telas de captura, biblioteca e lembretes e sinta como o SnapNote organiza suas
                         anotações.</p>
-                    <p className="mt-auto rounded-[50px] bg-brand-lime px-7.5 py-3.75 font-mansrope text-[15px] font-bold text-brand-primary transition-colors duration-300 hover:bg-brand-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-lime"
-                        href="/downloads/snapnote-0.1.apk" download type="application/vnd.android.package-archive">Baixar APK para Android</p>
+                    <a className="mt-auto rounded-[50px] bg-brand-lime px-7.5 py-3.75 font-mansrope text-[15px] font-bold text-brand-primary transition-colors duration-300 hover:bg-brand-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-lime"
+                        href="/downloads/snapnote-0.1.apk" download type="application/vnd.android.package-archive">Baixar APK para Android</a>
                     <p className="mt-2.5 max-w-105 text-[12px] leading-normal text-brand-ciano">Versão de teste 0.1 apresentada no NEXT, com 46 MB. Ao abrir o arquivo no celular, permita a
                         instalação de apps de fontes desconhecidas.</p>
                     <Image

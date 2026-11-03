@@ -13,7 +13,7 @@ Este projeto é a evolução da Sprint 3 (landing page) e foi entregue em conjun
 
 - Landing page com as seções: A Solução, Problema, Público-alvo, Galeria, Características, Nossa Equipe e Contato.
 - Carrossel de depoimentos alimentado por uma API (MockAPI).
-- Formulário de contato que envia a mensagem para a API e gera um **protocolo único** de atendimento.
+- Formulário de contato que envia a mensagem para a API.
 - Página **Experimente** (`/experimente`) para acessar o aplicativo.
 - **Área restrita da equipe** (`/mensagens`): rota privada, acessível apenas após login, que lista as mensagens enviadas pelos visitantes e permite sair da sessão.
 - Layout responsivo para **Desktop, Tablet e Mobile**.
@@ -104,7 +104,7 @@ A rota privada `/mensagens` exige autenticação.
 
 > A autenticação é uma simulação para fins acadêmicos: a validação das credenciais e a sessão (`localStorage`) são feitas no front-end.
 
-**Para ter mensagens na caixa**, envie uma mensagem pelo formulário de contato na página inicial (seção "Contato"). O protocolo gerado aparece na confirmação e também na área restrita.
+**Para ter mensagens na caixa**, envie uma mensagem pelo formulário de contato na página inicial (seção "Contato").
 
 ---
 

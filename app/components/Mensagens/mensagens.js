@@ -10,18 +10,16 @@ import { useRouter } from "next/navigation";
 
 export default function Mensagens() {
 
-    const [authorized, setAuthorized] = useState(true)
+    const [authorized, setAuthorized] = useState(null)
     const { messages, messageErrors, loading } = useMessages(authorized)
     const router = useRouter()
 
     useEffect(() => {
         const isAuthenticated = localStorage.getItem('autenticado')
-
         if (isAuthenticated !== "true") {
             setAuthorized(false)
             return
         }
-
         setAuthorized(true)
     }, [])
 
@@ -69,7 +67,7 @@ export default function Mensagens() {
                     </div>
 
                     <div className="flex items-center justify-center gap-3">
-                        <button onClick={handleExit} className="group flex items-center gap-2 rounded-full border-2 border-brand-primary px-5 py-3 text-sm font-bold transition-all duration-300 hover:border-brand-red hover:bg-brand-red">
+                        <button onClick={handleExit} className="cursor-pointer group flex items-center gap-2 rounded-full border-2 border-brand-primary px-5 py-3 text-sm font-bold transition-all duration-300 hover:border-brand-red hover:bg-brand-red">
                             Sair
                         </button>
 
@@ -102,15 +100,8 @@ export default function Mensagens() {
                     <div className="flex flex-col justify-center gap-3 rounded-2xl border border-brand-primary/10 bg-brand-pure p-7.5">
                         <span className="text-2xl">✉</span>
 
-                        <h2 className="text-xl font-extrabold text-brand-primary">
-                            Comunicação com a equipe
-                        </h2>
-
-                        <p className="max-w-lg text-sm leading-relaxed text-brand-grey">
-                            Aqui ficam centralizadas as mensagens recebidas pelo formulário
-                            de contato. Consulte os dados do remetente e o protocolo para
-                            acompanhar cada solicitação.
-                        </p>
+                        <h2 className="text-xl font-extrabold text-brand-primary">Comunicação com a equipe</h2>
+                        <p className="max-w-lg text-sm leading-relaxed text-brand-grey">Aqui ficam centralizadas as mensagens recebidas pelo formulário de contato.</p>
                     </div>
                 </section>
                 <section className="flex flex-col gap-6">
@@ -158,11 +149,6 @@ export default function Mensagens() {
                                     <div className="flex flex-1 flex-col gap-2 border-l-4 border-brand-yellow pl-4">
                                         <p className="text-xs font-extrabold uppercase tracking-wider text-brand-grey">Mensagem</p>
                                         <p className="break-words text-sm leading-7 text-brand-primary">{message.mensagem}</p>
-                                    </div>
-
-                                    <div className="flex flex-wrap items-center justify-between gap-3 border-t border-brand-primary/10 pt-4">
-                                        <span className="text-xs font-semibold text-brand-grey">Protocolo de atendimento</span>
-                                        <span className="rounded-lg bg-brand-primary px-3 py-2 font-mono text-xs font-bold tracking-wider text-brand-yellow">#{message.protocolo}</span>
                                     </div>
                                 </div>
                             ))}
