@@ -24,7 +24,7 @@ export default function Footer({openModal}) {
 
             <nav className="grid gap-2.5">
                 <Link href="/experimente" className="font-mansrope text-[12px] text-brand-primary transition-colors duration-300 hover:text-brand-blue">Experimente</Link>
-                <p onClick={() => openModal()} className="cursor-pointer font-mansrope text-[12px] text-brand-primary transition-colors duration-300 hover:text-brand-blue">Ver Mensagens (Equipe)</p>
+                <button onClick={() => openModal()} className="cursor-pointer font-mansrope text-[12px] text-brand-primary transition-colors duration-300 hover:text-brand-blue">Ver Mensagens (Equipe)</button>
             </nav>
 
             <div className="text-right max-[850px]:col-span-full max-[850px]:text-left max-[550px]:col-auto">

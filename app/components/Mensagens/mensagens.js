@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function Mensagens() {
 
-    const [authorized, setAuthorized] = useState(true)
+    const [authorized, setAuthorized] = useState(null)
     const { messages, messageErrors, loading } = useMessages(authorized)
     const router = useRouter()
 
@@ -23,7 +23,7 @@ export default function Mensagens() {
         setAuthorized(true)
     }, [])
 
-    if (loading) {
+    if (loading && authorized !== false) {
         return (
             <div className="flex min-h-dvh w-full items-center justify-center bg-brand-cream">
                 <p className="text-sm font-semibold text-brand-grey">
