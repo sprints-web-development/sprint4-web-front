@@ -113,7 +113,7 @@ A rota privada `/mensagens` exige autenticação.
 A IA (**Claude, da Anthropic**) foi utilizada como apoio ao desenvolvimento e à documentação desta sprint, principalmente para:
 
 - **Revisão dos requisitos:** comparar o projeto com o enunciado da Sprint 4 e listar o que ainda precisava ser implementado (rotas privadas, consumo de API, hooks customizados, documentação e entrega).
-- **Orientação sobre hooks customizados:** explicar o conceito e sugerir quais lógicas separar da parte visual (consumo de usuários e mensagens da API, autenticação e carrossel).
+- **Orientação sobre hooks customizados:** explicar o conceito e sugerir quais lógicas separar da parte visual (consumo de usuários e mensagens da API).
 - **Documentação:** gerar e atualizar este `README.md` com base no conteúdo real do projeto.
 
 A IA atuou como revisora técnica. As decisões de implementação, a escrita do código e os testes foram feitos pelos integrantes da equipe.
