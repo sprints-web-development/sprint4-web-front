@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function Mensagens() {
 
-    const [authorized, setAuthorized] = useState(null)
+    const [authorized, setAuthorized] = useState(true)
     const { messages, messageErrors, loading } = useMessages(authorized)
     const router = useRouter()
 

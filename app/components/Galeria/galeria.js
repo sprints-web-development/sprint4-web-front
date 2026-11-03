@@ -24,7 +24,7 @@ export default function Galeria() {
 
     return (
         <section id="galeria" className="flex w-full flex-col items-center bg-brand-primary px-20 py-12.5 max-[1250px]:px-7.5 max-[850px]:px-7.5 max-[850px]:py-7.5 max-[500px]:px-5">
-            <div className="flex w-full items-center justify-between">
+            <div className="flex w-full items-center justify-between max-[550px]:flex-col">
                 <div className="flex flex-col items-start">
                     <SectionTag name="Galeria" color="white" />
                     <h2 className="text-[60px] text-brand-cream">Uma memória visual<br /><span className="font-playfair text-brand-lime">Do seu jeito.</span></h2>

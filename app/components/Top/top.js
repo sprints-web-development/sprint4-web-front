@@ -66,7 +66,7 @@ export default function Top() {
                         </div>
                         <div>
                             <h3 className="text-[10px]">Contexto Recuperado</h3>
-                            <p className="text-[10px]">"Cai na prova de sexta!"</p>
+                            <p className="text-[10px]">&quot;Cai na prova de sexta!&quot;</p>
                         </div>
                     </div>
                 </div>

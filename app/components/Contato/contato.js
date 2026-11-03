@@ -11,7 +11,7 @@ export default function Contato() {
     const [status, setStatus] = useState(false)
     const [lastMessage, setLastMessage] = useState({ nome: "" })
     const { users, userErrors } = useUsers()
-    const { createMessage, sending, sendError } = useMessages(true)
+    const { createMessage, sending, sendError } = useMessages(false)
 
     const errors = [{ ...userErrors, origin: 1 }]
 
