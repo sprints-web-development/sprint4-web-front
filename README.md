@@ -92,7 +92,7 @@ A rota privada `/mensagens` exige autenticação.
 | Campo | Valor |
 |---|---|
 | E-mail | `equipe@snapnote.com` |
-| Senha | `SnapNote3ºNext` |
+| Senha | `SnapNote3Next` |
 
 **Como testar:**
 
