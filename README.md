@@ -127,7 +127,7 @@ app/
 ├── api/
 │   └── api.js              # Instância do axios (URL base do MockAPI)
 ├── hooks/
-│   ├── useMessages.js      # Hook customizado: busca as mensagens na API
+│   ├── useMessages.js      # Hook customizado: busca as mensagens na API e insere novas mensagens
 │   └── useUser.js          # Hook customizado (useUsers): busca os usuários/depoimentos
 ├── experimente/
 │   └── page.js             # Rota pública /experimente
